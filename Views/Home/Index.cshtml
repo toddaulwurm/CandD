@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    <h1 class="display-4">Chefs</h1>
+    <h2 class="display-5"><a href="/dishes">Dishes</a></h2>
+    <a href="/create">Add A Chef</a><br>
+    <a href="/createDish">Add A Dish</a>
+    <hr>
+    @{
+        
+
+        foreach(Chef d in ViewBag.AllData)
+        {
+            int age = DateTime.Now.Year - d.Birthday.Year;
+            if (d.Birthday.Date > DateTime.Today.AddYears(-age)) age--;
+            <h4> <a href="/read/@d.ChefId">@d.Name</a> @age</h4> 
+            <a href="/delete/@d.ChefId">Delete</a>
+        }
+    }
+</div>
